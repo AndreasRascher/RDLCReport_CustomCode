@@ -1,5 +1,5 @@
 # DynamicsNAV_RDLC_CustomCode
-
+<a href="#-">`^`</a> - (click to go to first anchor of this comment)
 Table of Contents
 * __SetData & GetData - the NAV way__
   * [global Variables](#global-Variables1)
