@@ -3,7 +3,7 @@
 TOC
 [SetData & GetData - Die Standardlösung in NAV]
 
-[create an anchor](#anchors-in-markdown)
+[create an anchor](#GetData)
 ## SetData & GetData - Die Standardlösung in NAV
 
 Um Werte je Beleg im Kopf und Fuß eines RDLC Berichtes anzuzeigen werden die Custom Code Funktionen `Code.SetData` und `Code.GetData` in der hidden property eines Rectangles oder eine Zelle eines Tablix hinterlegt. Den Custom Code für diese Funktionalität ist in 3 Teile unterteilt
@@ -15,7 +15,7 @@ Shared Data1 as Object
 Shared Data2 as Object
 Shared Data3 as Object
 ```
-__GetData__
+## GetData
 ```vbnet
 Public Function GetData(Num as Integer, Group as integer) as Object
   ' Num    - position of the string you want to have 
@@ -35,7 +35,7 @@ Public Function GetData(Num as Integer, Group as integer) as Object
   End If
 End Function
 ```
-__SetData__
+## SetData
 ```vbnet     
 Public Function SetData(NewData as Object,Group as integer)
   ' NewData - String with Char177 as seperator char 
@@ -55,4 +55,3 @@ Public Function SetData(NewData as Object,Group as integer)
   Return True
 End Function
 ```
-(#some-markdown-heading)
