@@ -12,12 +12,6 @@ __Table of Contents__
   * [GetData](#2C)
   * [SetData](#2D)
 ------------------------------------------------
-## Extending SetData & GetData - Idea <a id="2A"/>
-The report layout is rendered in different steps. Header and footer are even rendered before the page body. So if we want to align header or footer contents with the current content in the page body we need to use custom code functions. 
-* `Code.SetData` - saves a list of values as text in a global variable. The values are seperated by the character __&#177;__ . The code representation of that character is `Chr(177)`
-* `Code.GetData` - returns a value from one of the 3 lists at the requested position number
-  
-
 ## SetData & GetData - Idea <a id="1A"/>
 The report layout is rendered in different steps. Header and footer are even rendered before the page body. So if we want to align header or footer contents with the current content in the page body we need to use custom code functions. 
 * `Code.SetData` - saves a list of values as text in a global variable. The values are seperated by the character __&#177;__ . The code representation of that character is `Chr(177)`
@@ -69,3 +63,22 @@ Public Function SetData(NewData as Object,Group as integer)
   Return True
 End Function
 ```
+## Extending SetData & GetData - Idea <a id="2A"/>
+The NAV approach has some drawbacks we would like to avoid
+* after adding new fields to the list the counting starts. You need to know the position of the list item to get the correct value.
+* looking at `=Code.GetData(3,1)` doesn't indicate which value we want to get
+* Having 2 arguments instead of 1 in the GetData function only adds to the complexity
+* the list of values is maintained in RDLC instead of C/AL or AL which takes a lot of time and is hard to compare between versions
+
+__Target #1__ Providing the possibility of named indexes to avoid counting and provide better readability
+- Approach: Using the Microsoft.VisualBasic.Collection() Object as new global variable. The Class is already available without the need for enabling of external assemblies
+__Target #2__ GetData should only need 1 argument
+- Approach: Seperating the get function inte one for footer data and one for header data
+- Approach: Providing one global to pass values to the header and another global to pass values to the footer
+__Target #3__ The value list is maintained in C/Al or AL Code in a procedure
+- Approach: Create a procedure in where we can easily or modify our Field-List
+
+We want to address our header or footer values by name. This approach solves the following problems:
+* we avoiding the need to count positions
+* adding new fields is easier
+* if we create only one global variable for the header data and one for the footer data then GetData only needs one argument
