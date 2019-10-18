@@ -2,12 +2,16 @@
 
 Table of Contents
 * __SetData & GetData - the NAV way__
-  * [global Variables](#global-Variables)
+  * [global Variables](#global-Variables1)
+  * [GetData](#GetData)
+  * [SetData](#SetData)
+* __SetData & GetData - Extended__
+  * [global Variables](#global-Variables2)
   * [GetData](#GetData)
   * [SetData](#SetData)
   
 ## SetData & GetData - Idea
-The report layout is rendered in different steps. Header and footer are rendered before the page body. If we want to have header or footer contents based on the current content in the page body we need to use custom code functions. 
+The report layout is rendered in different steps. Header and footer are even rendered before the page body. So if we want to align header or footer contents with the current content in the page body we need to use custom code functions. 
 * `Code.SetData` - saves a list of values as text in a global variable. The values are seperated by the character __&#177;__ . The code representation of that character is `Chr(177)`
 * `Code.GetData` - returns a value from one of the 3 lists at the requested position number
 
