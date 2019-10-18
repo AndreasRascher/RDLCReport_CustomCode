@@ -72,13 +72,13 @@ The NAV approach has some drawbacks we would like to avoid
 
 __Target #1__ Providing the possibility of named indexes to avoid counting and provide better readability
 - Approach: Using the Microsoft.VisualBasic.Collection() Object as new global variable. The Class is already available without the need for enabling of external assemblies
+
 __Target #2__ GetData should only need 1 argument
 - Approach: Seperating the get function inte one for footer data and one for header data
 - Approach: Providing one global to pass values to the header and another global to pass values to the footer
-__Target #3__ The value list is maintained in C/Al or AL Code in a procedure
-- Approach: Create a procedure in where we can easily or modify our Field-List
 
-We want to address our header or footer values by name. This approach solves the following problems:
-* we avoiding the need to count positions
-* adding new fields is easier
-* if we create only one global variable for the header data and one for the footer data then GetData only needs one argument
+__Target #3__ Make it easier to maintain the value list 
+- Approach: By creating a procedure (C/Al or AL) to create a list of values, adding and modifying our Field-List becomes a lot easier
+
+## SetHeaderDataAsKeyValueList & SetFooterDataAsKeyValueList <a id="2B"/>
+## HeaderVal(Index) & FooterVal(Index) <a id="2C"/>
