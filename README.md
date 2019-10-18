@@ -65,7 +65,7 @@ End Function
 ```
 ## Extending SetData & GetData - Idea <a id="2A"/>
 The NAV approach has some drawbacks we would like to avoid
-* after adding new fields to the list the counting starts. You need to know the position of the list item to get the correct value.
+* after adding new fields to the list, the counting starts. You need to know the position of the item in a list to get the correct value.
 * looking at `=Code.GetData(3,1)` doesn't indicate which value we want to get
 * Having 2 arguments instead of 1 in the GetData function only adds to the complexity
 * the list of values is maintained in RDLC instead of C/AL or AL which takes a lot of time and is hard to compare between versions
