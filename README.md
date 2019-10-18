@@ -1,7 +1,7 @@
 # DynamicsNAV_RDLC_CustomCode
 
 Table of Contents
-* __SetData & GetData - Die Standardlösung in NAV]__
+* __SetData & GetData - the NAV way__
   * [global Variables](#global-Variables)
   * [GetData](#GetData)
   * [SetData](#SetData)
