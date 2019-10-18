@@ -8,7 +8,7 @@ Table of Contents
   
 ## SetData & GetData - Idea
 The report layout is rendered in different steps. Header and footer are rendered before the page body. If we want to have header or footer contents based on the current content in the page body we need to use custom code functions. 
-* `Code.SetData` - saves a list of values as text in a global variable. The values are seperated by the character __&#177__;. The code representation of that character is `Chr(177)`
+* `Code.SetData` - saves a list of values as text in a global variable. The values are seperated by the character __&#177__; . The code representation of that character is `Chr(177)`
 * `Code.GetData` - returns a value from one of the 3 lists at the requested position number
 
 ## global Variables
