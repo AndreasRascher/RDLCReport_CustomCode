@@ -2,26 +2,26 @@
 <a href="#-">`^`</a> - (click to go to first anchor of this comment)
 Table of Contents
 * __SetData & GetData - the NAV way__
-  * [global Variables](#global-Variables1)
-  * [GetData](#GetData)
-  * [SetData](#SetData)
+  * [global Variables](#1A)
+  * [GetData](#1B)
+  * [SetData](#1C)
 * __SetData & GetData - Extended__
   * [global Variables](#global-Variables2)
   * [GetData](#GetData)
   * [SetData](#SetData)
   
-## SetData & GetData - Idea
+## SetData & GetData - Idea 
 The report layout is rendered in different steps. Header and footer are even rendered before the page body. So if we want to align header or footer contents with the current content in the page body we need to use custom code functions. 
 * `Code.SetData` - saves a list of values as text in a global variable. The values are seperated by the character __&#177;__ . The code representation of that character is `Chr(177)`
 * `Code.GetData` - returns a value from one of the 3 lists at the requested position number
 
-## global Variables
+## global Variables <a id="1A"/>
 ```vbnet
 Shared Data1 as Object
 Shared Data2 as Object
 Shared Data3 as Object
 ```
-## GetData
+## GetData <a id="1B"/>
 ```vbnet
 Public Function GetData(Num as Integer, Group as integer) as Object
   ' Num    - position of the string you want to have 
@@ -41,7 +41,7 @@ Public Function GetData(Num as Integer, Group as integer) as Object
   End If
 End Function
 ```
-## SetData
+## SetData <a id="1C"/>
 ```vbnet     
 Public Function SetData(NewData as Object,Group as integer)
   ' NewData - String with Char177 as seperator char 
