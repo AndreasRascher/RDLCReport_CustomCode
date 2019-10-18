@@ -2,12 +2,15 @@
 
 Inhalt
 * __SetData & GetData - Die Standardlösung in NAV]__
-** [GetData](#GetData)
+  * [global Variables](#global-Variables)
+  * [GetData](#GetData)
+  * [SetData](#SetData)
+  
 ## SetData & GetData - Die Standardlösung in NAV
 
 Um Werte je Beleg im Kopf und Fuß eines RDLC Berichtes anzuzeigen werden die Custom Code Funktionen `Code.SetData` und `Code.GetData` in der hidden property eines Rectangles oder eine Zelle eines Tablix hinterlegt. Den Custom Code für diese Funktionalität ist in 3 Teile unterteilt
 
-__Definition der globalen Variablen__
+## global Variables
 
 ```vbnet
 Shared Data1 as Object
