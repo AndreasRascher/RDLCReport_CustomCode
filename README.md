@@ -2,17 +2,17 @@
 
 __Table of Contents__
 * __SetData & GetData - the NAV way__
-  * [Idea](#1A)
+  * [Concept](#1A)
   * [global Variables](#1B)
   * [GetData](#1C)
   * [SetData](#1D)
 * __Extending SetData & GetData__
-  * [Idea](#2A)
+  * [Concept](#2A)
   * [global Variables](#2B)
   * [GetData](#2C)
   * [SetData](#2D)
 ------------------------------------------------
-## SetData & GetData - Idea <a id="1A"/>
+## SetData & GetData - Concept <a id="1A"/>
 The report layout is rendered in different steps. Header and footer are even rendered before the page body. So if we want to align header or footer contents with the current content in the page body we need to use custom code functions. 
 * `Code.SetData` - saves a list of values as text in a global variable. The values are seperated by the character __&#177;__ . The code representation of that character is `Chr(177)`
 * `Code.GetData` - returns a value from one of the 3 lists at the requested position number
@@ -63,7 +63,7 @@ Public Function SetData(NewData as Object,Group as integer)
   Return True
 End Function
 ```
-## Extending SetData & GetData - Idea <a id="2A"/>
+## Improving SetData & GetData - The Concept <a id="2A"/>
 The NAV approach has some drawbacks we would like to avoid
 * after adding new fields to the list, the counting starts. You need to know the position of the item in a list to get the correct value.
 * looking at `=Code.GetData(3,1)` doesn't indicate which value we want to get
