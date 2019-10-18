@@ -1,17 +1,16 @@
 # DynamicsNAV_RDLC_CustomCode
 
-Inhalt
+Table of Contents
 * __SetData & GetData - Die Standardlösung in NAV]__
   * [global Variables](#global-Variables)
   * [GetData](#GetData)
   * [SetData](#SetData)
   
-## SetData & GetData - Die Standardlösung in NAV
-
-Um Werte je Beleg im Kopf und Fuß eines RDLC Berichtes anzuzeigen werden die Custom Code Funktionen `Code.SetData` und `Code.GetData` in der hidden property eines Rectangles oder eine Zelle eines Tablix hinterlegt. Den Custom Code für diese Funktionalität ist in 3 Teile unterteilt
+## SetData & GetData - Idea
+The report layout is rendered in different steps. Header and footer are rendered before the page body. If we want to have header or footer contents based on the current content in the page body we need to use custom code functions. 
+`Code.SetData` - saves a list of values as text in a global variable. The values are seperated by the character `chr(177)`. `Code.GetData` - returns a value from one of the 3 lists at the requested position number
 
 ## global Variables
-
 ```vbnet
 Shared Data1 as Object
 Shared Data2 as Object
