@@ -1,9 +1,8 @@
 # DynamicsNAV_RDLC_CustomCode
 
-TOC
-[SetData & GetData - Die Standardlösung in NAV]
-
-[create an anchor](#GetData)
+Inhalt
+* __SetData & GetData - Die Standardlösung in NAV]__
+** [GetData](#GetData)
 ## SetData & GetData - Die Standardlösung in NAV
 
 Um Werte je Beleg im Kopf und Fuß eines RDLC Berichtes anzuzeigen werden die Custom Code Funktionen `Code.SetData` und `Code.GetData` in der hidden property eines Rectangles oder eine Zelle eines Tablix hinterlegt. Den Custom Code für diese Funktionalität ist in 3 Teile unterteilt
