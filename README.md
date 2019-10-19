@@ -46,9 +46,9 @@ End Function
 ## SetData <a id="1C"/>
 ```vbnet     
 Public Function SetData(NewData as Object,Group as integer)
-  ' NewData - String with Char177 as seperator char 
-  ' Group   - select which of the 3 globals you want to use as source 
-  ' Object  - return value   
+  ' NewData     - string with char177 as seperator char 
+  ' Group       - select which of the 3 globals you want to use as source 
+  ' Return True - Required to hide the blind table. The method is called within the hidden property of the tablix cell. The propery is processed before rendering other the values 
   If Group = 1 and NewData <> "" Then
       Data1 = NewData
   End If
