@@ -9,8 +9,8 @@ __Table of Contents__
 * __Extending SetData & GetData__
   * [Concept](#2A)
   * [global Variables](#2B)
-  * [GetData](#2C)
-  * [SetData](#2D)
+  * [GetData ->HeaderVal(Key) & FooterVal(Key)](#2C)
+  * [SetData ->SetHeaderDataAsKeyValueList & SetFooterDataAsKeyValueList](#2D)
 ------------------------------------------------
 ## SetData & GetData - Concept <a id="1A"/>
 The report layout is rendered in different steps. Header and footer are even rendered before the page body. So if we want to align header or footer contents with the current content in the page body we need to use custom code functions. 
@@ -85,7 +85,7 @@ __Target #3__ Make it easier to maintain the value list
 Shared HeaderData As Microsoft.VisualBasic.Collection
 Shared FooterData As Microsoft.VisualBasic.Collection
 ```
-## SetHeaderDataAsKeyValueList & SetFooterDataAsKeyValueList <a id="2B"/>
+## SetData -> SetHeaderDataAsKeyValueList & SetFooterDataAsKeyValueList <a id="2B"/>
 ```vbnet
 Public Function SetHeaderDataAsKeyValueList(NewData as Object)
   SetDataAsKeyValueList(HeaderData,NewData)
@@ -147,7 +147,7 @@ Public Function AddKeyValue(ByRef Data as Object, Key as Object,Value as Object)
   Return Data.Count
 End Function
 ```
-## HeaderVal(Index) & FooterVal(Index) <a id="2C"/>
+## GetData -> HeaderVal(Key) & FooterVal(Key) <a id="2C"/>
 ```vbnet 
 Public Function HeaderVal(Key as Object)
   Return GetValue(HeaderData,Key)
