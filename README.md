@@ -80,5 +80,112 @@ __Target #2__ GetData should only need 1 argument
 __Target #3__ Make it easier to maintain the value list 
 - Approach: By creating a procedure (C/Al or AL) to create a list of values, adding and modifying our Field-List becomes a lot easier
 
+## global Variables <a id="2B"/>
+```vbnet
+Shared HeaderData As Microsoft.VisualBasic.Collection
+Shared FooterData As Microsoft.VisualBasic.Collection
+```
 ## SetHeaderDataAsKeyValueList & SetFooterDataAsKeyValueList <a id="2B"/>
+```vbnet
+Public Function SetHeaderDataAsKeyValueList(NewData as Object)
+  SetDataAsKeyValueList(HeaderData,NewData)
+  Return True 'Set Control to Hidden=true
+End Function
+ 
+Public Function SetFooterDataAsKeyValueList(NewData as Object)
+  FooterData = New Microsoft.VisualBasic.Collection 
+  SetDataAsKeyValueList(FooterData,NewData)
+  Return True 'Set Control to Hidden=true
+End Function
+ 
+Public Function SetDataAsKeyValueList(ByRef SharedData as Object,NewData as Object)
+  Dim i as integer
+  Dim words As String() = Split(CStr(NewData),Chr(177))
+  Dim Key As String
+  Dim Value As String
+  For i = 1 To UBound(words)   
+    if ((i mod 2) = 0) then
+      Key   = Cstr(Choose(i-1, Split(Cstr(NewData),Chr(177))))     
+      Value = Cstr(Choose(i, Split(Cstr(NewData),Chr(177))))
+      AddKeyValue(SharedData,Key,Value)
+    end if
+    ' If last item in list only has a key
+    if (i = UBound(words)) and ((i mod 2) = 1) then
+      Key   = Cstr(Choose(i, Split(Cstr(NewData),Chr(177))))     
+      Value = ""
+      AddKeyValue(SharedData,Key,Value)
+    end if
+  Next 
+End Function
+
+Public Function AddValue(ByRef Data as Object,Value as Object)
+  if IsNothing(Data) then
+     Data = New Microsoft.VisualBasic.Collection
+  End if
+  Data.Add(Value,Data.Count +1)
+  Return Data.Count  
+End Function
+ 
+Public Function AddKeyValue(ByRef Data as Object, Key as Object,Value as Object)
+  if IsNothing(Data) then
+     Data = New Microsoft.VisualBasic.Collection
+  End if
+ 
+  Dim RealKey as String
+  if (CStr(Key) <> "") Then
+    RealKey = CStr(Key).ToUpper()
+  else
+    RealKey = CStr(Data.Count +1)
+  End if
+  ' Override
+  if Data.Contains(RealKey) then
+     Data.Remove(RealKey)
+  End if
+ 
+  Data.Add(Value,RealKey)   
+ 
+  Return Data.Count
+End Function
+```
 ## HeaderVal(Index) & FooterVal(Index) <a id="2C"/>
+```vbnet 
+Public Function HeaderVal(Key as Object)
+  Return GetValue(HeaderData,Key)
+End Function
+ 
+Public Function FooterVal(Key as Object)
+  Return GetValue(FooterData,Key)
+End Function
+
+Public Function GetValue(ByRef Data as Object,Key as Object)
+ 
+  'if Key As Number
+  If IsNumeric(Key) then
+    Dim i as Long
+    Integer.TryParse(Key,i)
+    if (i=0) then
+    return "Index starts at 1"
+    end if
+    if (Data.Count = 0) OR (i = 0) OR (i >Data.Count) then
+      Return "Invalid Index: '"+CStr(i)+"'! Collection Count = "+ CStr(Data.Count)
+    end if  
+    Return Data.Item(i)
+  end if
+ 
+  'if Key As String
+  Key = CStr(Key).ToUpper() ' Key is Case Insensitive
+  Select Case True
+    Case IsNothing(Data)
+      Return "CollectionEmpty"
+    Case IsNothing(Key)
+      Return "KeyEmpty"
+    Case (not Data.Contains(Key))
+      Return "Key not found: '"+CStr(Key)+"'!"
+    Case Data.Contains(Key)
+      Return Data.Item(Key)
+    Case else
+      Return "Something else failed"
+  End Select 
+ 
+End Function
+```
