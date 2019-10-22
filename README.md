@@ -85,7 +85,49 @@ __Target #3__ Make it easier to maintain the value list
 Shared HeaderData As Microsoft.VisualBasic.Collection
 Shared FooterData As Microsoft.VisualBasic.Collection
 ```
-## SetData -> SetHeaderDataAsKeyValueList & SetFooterDataAsKeyValueList <a id="2B"/>
+## GetData -> HeaderVal(Key) & FooterVal(Key) <a id="2C"/>
+```vbnet 
+Public Function HeaderVal(Key as Object)
+  Return GetValue(HeaderData,Key)
+End Function
+ 
+Public Function FooterVal(Key as Object)
+  Return GetValue(FooterData,Key)
+End Function
+
+Public Function GetValue(ByRef Data as Object,Key as Object)
+ 
+  'if Key As Number
+  If IsNumeric(Key) then
+    Dim i as Long
+    Integer.TryParse(Key,i)
+    if (i=0) then
+    return "Index starts at 1"
+    end if
+    if (Data.Count = 0) OR (i = 0) OR (i >Data.Count) then
+      Return "Invalid Index: '"+CStr(i)+"'! Collection Count = "+ CStr(Data.Count)
+    end if  
+    Return Data.Item(i)
+  end if
+ 
+  'if Key As String
+  Key = CStr(Key).ToUpper() ' Key is Case Insensitive
+  Select Case True
+    Case IsNothing(Data)
+      Return "CollectionEmpty"
+    Case IsNothing(Key)
+      Return "KeyEmpty"
+    Case (not Data.Contains(Key))
+      Return "Key not found: '"+CStr(Key)+"'!"
+    Case Data.Contains(Key)
+      Return Data.Item(Key)
+    Case else
+      Return "Something else failed"
+  End Select 
+ 
+End Function
+```
+## SetData -> SetHeaderDataAsKeyValueList & SetFooterDataAsKeyValueList <a id="2D"/>
 ```vbnet
 Public Function SetHeaderDataAsKeyValueList(NewData as Object)
   SetDataAsKeyValueList(HeaderData,NewData)
@@ -145,47 +187,5 @@ Public Function AddKeyValue(ByRef Data as Object, Key as Object,Value as Object)
   Data.Add(Value,RealKey)   
  
   Return Data.Count
-End Function
-```
-## GetData -> HeaderVal(Key) & FooterVal(Key) <a id="2C"/>
-```vbnet 
-Public Function HeaderVal(Key as Object)
-  Return GetValue(HeaderData,Key)
-End Function
- 
-Public Function FooterVal(Key as Object)
-  Return GetValue(FooterData,Key)
-End Function
-
-Public Function GetValue(ByRef Data as Object,Key as Object)
- 
-  'if Key As Number
-  If IsNumeric(Key) then
-    Dim i as Long
-    Integer.TryParse(Key,i)
-    if (i=0) then
-    return "Index starts at 1"
-    end if
-    if (Data.Count = 0) OR (i = 0) OR (i >Data.Count) then
-      Return "Invalid Index: '"+CStr(i)+"'! Collection Count = "+ CStr(Data.Count)
-    end if  
-    Return Data.Item(i)
-  end if
- 
-  'if Key As String
-  Key = CStr(Key).ToUpper() ' Key is Case Insensitive
-  Select Case True
-    Case IsNothing(Data)
-      Return "CollectionEmpty"
-    Case IsNothing(Key)
-      Return "KeyEmpty"
-    Case (not Data.Contains(Key))
-      Return "Key not found: '"+CStr(Key)+"'!"
-    Case Data.Contains(Key)
-      Return Data.Item(Key)
-    Case else
-      Return "Something else failed"
-  End Select 
- 
 End Function
 ```
