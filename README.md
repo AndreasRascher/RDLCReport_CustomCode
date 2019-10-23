@@ -11,6 +11,14 @@ __Table of Contents__
   * [global Variables](#2B)
   * [GetData ->HeaderVal(Key) & FooterVal(Key)](#2C)
   * [SetData ->SetHeaderDataAsKeyValueList & SetFooterDataAsKeyValueList](#2D)
+* __Getting Started__
+  * [NAV/BC: Create character seperated list with key value pairs](#3A)
+  * [NAV/BC: Add key value list text to the dataset](#3B)  
+  * [RDLC: #1 Add new functions the custom code section](#3C)
+  * [RDLC: #2 Add a hidden control in the body section to set the data](#3D)
+  * [RDLC: #3 Address data by name](#3E)  
+
+
 ------------------------------------------------
 ## SetData & GetData - Concept <a id="1A"/>
 The report layout is rendered in different steps. Header and footer are even rendered before the page body. So if we want to align header or footer contents with the current content in the page body we need to use custom code functions. 
@@ -179,7 +187,7 @@ Public Function AddKeyValue(ByRef Data as Object, Key as Object,Value as Object)
   else
     RealKey = CStr(Data.Count +1)
   End if
-  ' Override
+  ' Replace value if it already exists
   if Data.Contains(RealKey) then
      Data.Remove(RealKey)
   End if
@@ -189,3 +197,9 @@ Public Function AddKeyValue(ByRef Data as Object, Key as Object,Value as Object)
   Return Data.Count
 End Function
 ```
+# TODO
+##  NAV/BC: Create character seperated list with key value pairs <a id="3A"/>
+##  NAV/BC: Add key value list text to the dataset <a id="3B"/>
+##  RDLC: #1 Add new functions the custom code section <a id="3C"/>
+##  RDLC: #2 Add a hidden control in the body section to set the data <a id="3D"/>
+##  RDLC: #3 Address data by name <a id="3E"/>
