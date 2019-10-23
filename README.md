@@ -1,4 +1,4 @@
-# DynamicsNAV_RDLC_CustomCode
+# Dynamics NAV/BC RDLC Custom Code - Extending SetData & GetData
 
 __Table of Contents__
 * __SetData & GetData - the NAV way__
