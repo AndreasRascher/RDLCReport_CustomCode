@@ -2,9 +2,9 @@
 
 __Table of Contents__
 * __Getting Started__
-  * [NAV/BC: Create character seperated list with key value pairs](#1A)
-  * [NAV/BC: Add key value list text to the dataset](#1B)  
-  * [RDLC: #1 Add new functions the custom code section](#1C)
+  * [RDLC: #1 Add new functions the custom code section](#1A)
+  * [C/AL or AL: Add methods to create a key value list](#1B)
+  * [C/AL or AL: Add key value list text to the dataset](#1C)  
   * [RDLC: #2 Add a hidden control in the body section to set the data](#1D)
   * [RDLC: #3 Address data by name](#1E)  
 * __SetData & GetData - the NAV way__
@@ -23,6 +23,7 @@ __Table of Contents__
 ------------------------------------------------
 # Getting Started
 ##  RDLC: Add new methods to the custom code section <a id="1A"/>
+*open the report layout, go to the custom code section and add the code below:*
 ```vbnet
 
 ' =================
@@ -34,6 +35,8 @@ Shared FooterData As Microsoft.VisualBasic.Collection
 ' ==========================
 ' Get Header or Footer Value 
 ' ==========================
+
+' Key = position number or name
 Public Function HeaderVal(Key as Object)
   Return GetValue(HeaderData,Key)
 End Function
@@ -73,9 +76,9 @@ Public Function GetValue(ByRef Data as Object,Key as Object)
  
 End Function
 
-' =============================
-' Set Header and Footer values 
-' =============================
+' ===========================================
+' Set Header and Footer values from the body 
+' ===========================================
 
 Public Function SetHeaderDataAsKeyValueList(NewData as Object)
   SetDataAsKeyValueList(HeaderData,NewData)
@@ -137,9 +140,11 @@ Public Function AddKeyValue(ByRef Data as Object, Key as Object,Value as Object)
   Return Data.Count
 End Function
 ```
-##  C/AL or AL: Add 2 new procedures <a id="1B"/>
-##  RDLC: Add a hidden control in the body section to set the data <a id="1C"/>
-##  RDLC: Get data by name <a id="1D"/>
+##  C/AL or AL: Add methods to create a key value list <a id="1B"/>
+##  C/AL or AL: Add key value list text to the dataset <a id="1C"/>
+##  RDLC: Add a hidden control in the body section to set the data <a id="1D"/>
+##  RDLC: Get data by name <a id="1E"/>
+
 ------------------------------------------------
 
 ## SetData & GetData - Concept <a id="2A"/>
