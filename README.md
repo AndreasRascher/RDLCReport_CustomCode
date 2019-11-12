@@ -31,22 +31,18 @@ __Table of Contents__
 Shared HeaderData As Microsoft.VisualBasic.Collection
 Shared FooterData As Microsoft.VisualBasic.Collection
 
-' =================
-' Get Header Value 
-' =================
+' ==========================
+' Get Header or Footer Value 
+' ==========================
 Public Function HeaderVal(Key as Object)
   Return GetValue(HeaderData,Key)
 End Function
 
-' =================
-' Get Footer Value 
-' =================
 Public Function FooterVal(Key as Object)
   Return GetValue(FooterData,Key)
 End Function
 
 Public Function GetValue(ByRef Data as Object,Key as Object)
- 
   'if Key As Number
   If IsNumeric(Key) then
     Dim i as Long
@@ -76,6 +72,10 @@ Public Function GetValue(ByRef Data as Object,Key as Object)
   End Select 
  
 End Function
+
+' =============================
+' Set Header and Footer values 
+' =============================
 
 Public Function SetHeaderDataAsKeyValueList(NewData as Object)
   SetDataAsKeyValueList(HeaderData,NewData)
