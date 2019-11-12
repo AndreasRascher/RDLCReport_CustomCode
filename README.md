@@ -141,6 +141,34 @@ Public Function AddKeyValue(ByRef Data as Object, Key as Object,Value as Object)
 End Function
 ```
 ##  C/AL or AL: Add methods to create a key value list <a id="1B"/>
+```pascal
+local procedure AddKeyValue(VAR KeyValueListAsText : Text;Key : Text;Value : Text)
+begin
+  Chr177[1] := 177;
+  NewPair := Chr177 + Key + Chr177 + Value;
+  IF KeyValueListAsText = '' THEN
+    KeyValueListAsText += COPYSTR(NewPair,2) // Don't start with seperator char
+  ELSE
+    KeyValueListAsText += NewPair;
+end;
+
+local procedure GetHeaderFields(SalesHeader : Record "Sales Header") Header : Text
+begin
+  AddKeyValue(Header,'COMPANYNAME',COMPANYNAME);
+  AddKeyValue(Header,'TODAY',FORMAT(TODAY,0,4));
+  AddKeyValue(Header,'SalesHeader_SelltoCustomerName',SalesHeader."Sell-to Customer Name");
+  AddKeyValue(Header,'SalesHeader_SelltoCustomerName2',SalesHeader."Sell-to Customer Name 2");
+  AddKeyValue(Header,'SalesHeader_SelltoCustomerNo',SalesHeader."Sell-to Customer No.");
+  AddKeyValue(Header,'SalesHeader_SelltoCustomerNo_CPT',SalesHeader.Fieldcaption("Sell-to Customer No."));
+  AddKeyValue(Header,'SalesHeader_SelltoPostCode',SalesHeader."Sell-to Post Code");
+  AddKeyValue(Header,'SalesHeader_SelltoCity',SalesHeader."Sell-to Post Code");
+  AddKeyValue(Header,'SalesHeader_No_CPT','Auftrags-Nr.');
+  AddKeyValue(Header,'SalesHeader_No',SalesHeader."No.");
+  AddKeyValue(Header,'SalesHeader_ShipToPostCode',"Sales Header"."Ship-to Post Code");
+  AddKeyValue(Header,'SalesHeader_ShipToCity',"Sales Header"."Ship-to City");
+  AddKeyValue(Header,'SalesHeader_ShipToAddress',"Sales Header"."Ship-to Address");
+end;
+```
 ##  C/AL or AL: Add key value list text to the dataset <a id="1C"/>
 ##  RDLC: Add a hidden control in the body section to set the data <a id="1D"/>
 ##  RDLC: Get data by name <a id="1E"/>
