@@ -171,6 +171,82 @@ end;
 ```
 ##  C/AL or AL: Add key value list text to the dataset <a id="1C"/>
 ##  RDLC: Add a hidden control in the body section to set the data <a id="1D"/>
+```xml
+<Tablix Name="SetHeaderTable">
+  <TablixBody>
+	<TablixColumns>
+	  <TablixColumn>
+		<Width>0.3cm</Width>
+	  </TablixColumn>
+	</TablixColumns>
+	<TablixRows>
+	  <TablixRow>
+		<Height>0.3cm</Height>
+		<TablixCells>
+		  <TablixCell>
+			<CellContents>
+			  <Textbox Name="SetHeaderTableCell">
+				<CanGrow>true</CanGrow>
+				<KeepTogether>true</KeepTogether>
+				<Paragraphs>
+				  <Paragraph>
+					<TextRuns>
+					  <TextRun>
+						<Value />
+						<Style />
+					  </TextRun>
+					</TextRuns>
+					<Style />
+				  </Paragraph>
+				</Paragraphs>
+				<Visibility>
+				  <Hidden>=Code.SetHeaderDataAsKeyValueList(Fields!Header1.Value)</Hidden>
+				</Visibility>
+				<Style>
+				  <Border>
+					<Style>None</Style>
+				  </Border>
+				</Style>
+			  </Textbox>
+			  <rd:Selected>true</rd:Selected>
+			</CellContents>
+		  </TablixCell>
+		</TablixCells>
+	  </TablixRow>
+	</TablixRows>
+  </TablixBody>
+  <TablixColumnHierarchy>
+	<TablixMembers>
+	  <TablixMember />
+	</TablixMembers>
+  </TablixColumnHierarchy>
+  <TablixRowHierarchy>
+	<TablixMembers>
+	  <TablixMember />
+	</TablixMembers>
+  </TablixRowHierarchy>
+  <Filters>
+	<Filter>
+	  <FilterExpression>=Fields!Header1.Value</FilterExpression>
+	  <Operator>GreaterThan</Operator>
+	  <FilterValues>
+		<FilterValue>""</FilterValue>
+	  </FilterValues>
+	</Filter>
+  </Filters>
+  <Left>1.13167cm</Left>
+  <Height>0.3cm</Height>
+  <Width>0.3cm</Width>
+  <ZIndex>1</ZIndex>
+  <Style>
+	<Border>
+	  <Color>Red</Color>
+	  <Style>Solid</Style>
+	</Border>
+  </Style>
+</Tablix>
+```
+
 ##  RDLC: Get data by name <a id="1E"/>
 
 ------------------------------------------------
