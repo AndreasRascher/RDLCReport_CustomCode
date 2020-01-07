@@ -200,7 +200,7 @@ end;
 				  </Paragraph>
 				</Paragraphs>
 				<Visibility>
-				  <Hidden>=Code.SetHeaderDataAsKeyValueList(Fields!Header1.Value)</Hidden>
+				  <Hidden>=Code.SetHeaderDataAsKeyValueList(Fields!HeaderFieldsList.Value)</Hidden>
 				</Visibility>
 				<Style>
 				  <Border>
