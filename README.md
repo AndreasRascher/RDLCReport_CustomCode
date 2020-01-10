@@ -145,11 +145,8 @@ End Function
 local procedure AddKeyValue(VAR KeyValueListAsText : Text;Key : Text;Value : Text)
 begin
   Chr177[1] := 177;
-  NewPair := Chr177 + Key + Chr177 + Value;
-  IF KeyValueListAsText = '' THEN
-    KeyValueListAsText += COPYSTR(NewPair,2) // Don't start with seperator char
-  ELSE
-    KeyValueListAsText += NewPair;
+  NewPair := Key + Chr177 + Value + Chr177;
+  KeyValueListAsText += NewPair;
 end;
 
 local procedure GetHeaderFields(SalesHeader : Record "Sales Header") Header : Text
