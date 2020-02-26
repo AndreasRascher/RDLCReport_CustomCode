@@ -315,5 +315,5 @@ __Target #2__ GetData should only need 1 argument
 - Approach: Providing one global to pass values to the header and another global to pass values to the footer
 
 __Target #3__ Make it easier to maintain the value list 
-- Approach: By creating a procedure (C/Al or AL) to create a list of values, adding and modifying our Field-List becomes a lot easier
+- Approach: By creating a procedure (C/AL or AL) to create a list of values, adding and modifying our Field-List becomes a lot easier
 
