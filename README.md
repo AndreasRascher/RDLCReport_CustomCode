@@ -226,7 +226,7 @@ end;
   </TablixRowHierarchy>
   <Filters>
 	<Filter>
-	  <FilterExpression>=Fields!Header1.Value</FilterExpression>
+	  <FilterExpression>=Fields!HeaderFieldsList.Value</FilterExpression>
 	  <Operator>GreaterThan</Operator>
 	  <FilterValues>
 		<FilterValue>""</FilterValue>
