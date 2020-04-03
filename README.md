@@ -321,3 +321,12 @@ __Target #3__ Make it easier to maintain the value list
 
 ## GetData ->HeaderVal(Key) & FooterVal(Key) <a id="#3C"/>
 ![Sample HeaderVal](Code_HeaderVal.png)
+As shown in the example above getting the data into the header works by calling
+```vbnet
+=Code.HeaderVal("YourIdentifier")'
+```
+or into the footer
+```vbnet
+=Code.FooterVal("YourIdentifier")'
+```
+**!Please end your Expressions with an apostrophe or else you will loose the arguments when copy & pasting textboxes from one instance of SQL Report Builder to another**
