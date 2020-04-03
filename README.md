@@ -182,7 +182,7 @@ Example in AL:
 	    [...]
 ```
 ##  RDLC: Add a hidden control in the body section to set the data <a id="1D"/>
-* open the report.rdl file, search for "<ReportItems>" and paste the following text below
+* open the report.rdl file, search for "\<ReportItems>" and paste the following text below
 * move the tablix into your list tablix if necessary
 ```xml
 <Tablix Name="SetHeaderTable">
