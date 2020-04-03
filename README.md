@@ -154,19 +154,17 @@ end;
 
 local procedure GetHeaderFields(SalesHeader : Record "Sales Header") Header : Text
 begin
-  AddKeyValue(Header,'COMPANYNAME',COMPANYNAME);
-  AddKeyValue(Header,'TODAY',FORMAT(TODAY,0,4));
-  AddKeyValue(Header,'SalesHeader_SelltoCustomerName',SalesHeader."Sell-to Customer Name");
-  AddKeyValue(Header,'SalesHeader_SelltoCustomerName2',SalesHeader."Sell-to Customer Name 2");
-  AddKeyValue(Header,'SalesHeader_SelltoCustomerNo',SalesHeader."Sell-to Customer No.");
-  AddKeyValue(Header,'SalesHeader_SelltoCustomerNo_CPT',SalesHeader.Fieldcaption("Sell-to Customer No."));
-  AddKeyValue(Header,'SalesHeader_SelltoPostCode',SalesHeader."Sell-to Post Code");
-  AddKeyValue(Header,'SalesHeader_SelltoCity',SalesHeader."Sell-to Post Code");
-  AddKeyValue(Header,'SalesHeader_No_CPT','Auftrags-Nr.');
-  AddKeyValue(Header,'SalesHeader_No',SalesHeader."No.");
-  AddKeyValue(Header,'SalesHeader_ShipToPostCode',"Sales Header"."Ship-to Post Code");
-  AddKeyValue(Header,'SalesHeader_ShipToCity',"Sales Header"."Ship-to City");
-  AddKeyValue(Header,'SalesHeader_ShipToAddress',"Sales Header"."Ship-to Address");
+        AddKeyValue(Header, 'Address1', VendAddr[1]);
+        AddKeyValue(Header, 'Address2', VendAddr[2]);
+        AddKeyValue(Header, 'Address3', VendAddr[3]);
+        AddKeyValue(Header, 'Address4', VendAddr[4]);
+        AddKeyValue(Header, 'Address5', VendAddr[5]);
+        AddKeyValue(Header, 'Address6', VendAddr[6]);
+        AddKeyValue(Header, 'Address7', VendAddr[7]);
+        AddKeyValue(Header, 'Address8', VendAddr[8]);
+        AddKeyValue(Header, 'CompanyAddress1', CompanyAddr[1]);
+        AddKeyValue(Header, 'CompanyAddress2', CompanyAddr[2]);
+        AddKeyValue(Header, 'CompanyAddress3', CompanyAddr[3]);
 end;
 ```
 ##  C/AL or AL: Add key value list text to the dataset <a id="1C"/>
