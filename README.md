@@ -142,11 +142,14 @@ End Function
 ```
 ##  C/AL or AL: Add methods to create a key value list <a id="1B"/>
 ```pascal
-local procedure AddKeyValue(VAR KeyValueListAsText : Text;Key : Text;Value : Text)
+local procedure AddKeyValue(VAR KeyValueListAsText: Text; _Key: Text; _Value: Text)
+var
+	Chr177: Text[1];
+	NewPair: Text;
 begin
-  Chr177[1] := 177;
-  NewPair := Key + Chr177 + Value + Chr177;
-  KeyValueListAsText += NewPair;
+	Chr177[1] := 177;
+	NewPair := _Key + Chr177 + _Value + Chr177;
+	KeyValueListAsText += NewPair;
 end;
 
 local procedure GetHeaderFields(SalesHeader : Record "Sales Header") Header : Text
