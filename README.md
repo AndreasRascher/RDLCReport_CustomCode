@@ -170,6 +170,25 @@ begin
 end;
 ```
 ##  C/AL or AL: Add key value list text to the dataset <a id="1C"/>
+```
+    dataset
+    {
+        dataitem("Purchase Header"; "Purchase Header")
+        {
+            DataItemTableView = sorting ("Document Type", "No.") where ("Document Type" = const (Order));
+            RequestFilterFields = "No.", "Buy-from Vendor No.", "No. Printed";
+            RequestFilterHeading = 'Purchase Order';
+            column(Purchase_Header_Document_Type; "Document Type")
+            {
+            }
+            column(Purchase_Header_No_; "No.")
+            {
+            }
+            column(HeaderFieldsList; GetHeaderFields("Purchase Header"))
+            { }
+            column(FooterFieldsList; GetFooterFields("Purchase Header"))
+            { }
+```
 ##  RDLC: Add a hidden control in the body section to set the data <a id="1D"/>
 * open the report.rdl file, search for "<ReportItems>" and paste the following text below
 * move the tablix into your list tablix if necessary
