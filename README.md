@@ -319,3 +319,5 @@ __Target #2__ GetData should only need 1 argument
 __Target #3__ Make it easier to maintain the value list 
 - Approach: By creating a procedure (C/AL or AL) to create a list of values, adding and modifying our Field-List becomes a lot easier
 
+## GetData ->HeaderVal(Key) & FooterVal(Key) <a id="#3C"/>
+[Code_HeaderVal.png]
