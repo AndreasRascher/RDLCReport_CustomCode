@@ -202,15 +202,7 @@ Example in AL:
 				<CanGrow>true</CanGrow>
 				<KeepTogether>true</KeepTogether>
 				<Paragraphs>
-				  <Paragraph>
-					<TextRuns>
-					  <TextRun>
-						<Value />
-						<Style />
-					  </TextRun>
-					</TextRuns>
-					<Style />
-				  </Paragraph>
+				  <Paragraph><TextRuns><TextRun><Value /><Style /></TextRun></TextRuns><Style /></Paragraph>
 				</Paragraphs>
 				<Visibility>
 				  <Hidden>=Code.SetHeaderDataAsKeyValueList(Fields!HeaderFieldsList.Value)</Hidden>
@@ -228,35 +220,13 @@ Example in AL:
 	  </TablixRow>
 	</TablixRows>
   </TablixBody>
-  <TablixColumnHierarchy>
-	<TablixMembers>
-	  <TablixMember />
-	</TablixMembers>
-  </TablixColumnHierarchy>
-  <TablixRowHierarchy>
-	<TablixMembers>
-	  <TablixMember />
-	</TablixMembers>
-  </TablixRowHierarchy>
-  <Filters>
-	<Filter>
-	  <FilterExpression>=Fields!HeaderFieldsList.Value</FilterExpression>
+  <TablixColumnHierarchy><TablixMembers><TablixMember /></TablixMembers></TablixColumnHierarchy>
+  <TablixRowHierarchy><TablixMembers><TablixMember /></TablixMembers></TablixRowHierarchy>
+  <Filters><Filter><FilterExpression>=Fields!HeaderFieldsList.Value</FilterExpression>
 	  <Operator>GreaterThan</Operator>
-	  <FilterValues>
-		<FilterValue>""</FilterValue>
-	  </FilterValues>
-	</Filter>
-  </Filters>
-  <Left>1.13167cm</Left>
-  <Height>0.3cm</Height>
-  <Width>0.3cm</Width>
-  <ZIndex>1</ZIndex>
-  <Style>
-	<Border>
-	  <Color>Red</Color>
-	  <Style>Solid</Style>
-	</Border>
-  </Style>
+	  <FilterValues><FilterValue>""</FilterValue> </FilterValues></Filter> </Filters>
+  <Left>1.13167cm</Left><Height>0.3cm</Height><Width>0.3cm</Width><ZIndex>1</ZIndex>
+  <Style><Border><Color>Red</Color><Style>Solid</Style></Border></Style>
 </Tablix>
 ```
 
