@@ -23,7 +23,7 @@ __Table of Contents__
 ------------------------------------------------
 # Getting Started
 ##  RDLC: Add new methods to the custom code section <a id="1A"/>
-*open the report layout, go to the custom code section and add the code below:*
+*open the report layout, go to the custom code section and copy/paste the code below:*
 ```vbnet
 ' Source: https://github.com/AndreasRascher/RDLCReport_CustomCode
 ' =================
