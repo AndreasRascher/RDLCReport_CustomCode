@@ -152,19 +152,19 @@ begin
 	KeyValueListAsText += NewPair;
 end;
 
-local procedure GetHeaderFields(SalesHeader : Record "Sales Header") Header : Text
+local procedure GetHeaderFields(SalesHeader : Record "Sales Header"; Addr : Array[8] of Text) KeyValueList : Text
 begin
-        AddKeyValue(Header, 'Address1', VendAddr[1]);
-        AddKeyValue(Header, 'Address2', VendAddr[2]);
-        AddKeyValue(Header, 'Address3', VendAddr[3]);
-        AddKeyValue(Header, 'Address4', VendAddr[4]);
-        AddKeyValue(Header, 'Address5', VendAddr[5]);
-        AddKeyValue(Header, 'Address6', VendAddr[6]);
-        AddKeyValue(Header, 'Address7', VendAddr[7]);
-        AddKeyValue(Header, 'Address8', VendAddr[8]);
-        AddKeyValue(Header, 'CompanyAddress1', CompanyAddr[1]);
-        AddKeyValue(Header, 'CompanyAddress2', CompanyAddr[2]);
-        AddKeyValue(Header, 'CompanyAddress3', CompanyAddr[3]);
+        AddKeyValue(KeyValueList, 'Address1', Addr[1]);
+        AddKeyValue(KeyValueList, 'Address2', Addr[2]);
+        AddKeyValue(KeyValueList, 'Address3', Addr[3]);
+        AddKeyValue(KeyValueList, 'Address4', Addr[4]);
+        AddKeyValue(KeyValueList, 'Address5', Addr[5]);
+        AddKeyValue(KeyValueList, 'Address6', Addr[6]);
+        AddKeyValue(KeyValueList, 'Address7', Addr[7]);
+        AddKeyValue(KeyValueList, 'Address8', Addr[8]);
+        AddKeyValue(KeyValueList, 'CompanyAddress1', CompanyAddr[1]);
+        AddKeyValue(KeyValueList, 'CompanyAddress2', CompanyAddr[2]);
+        AddKeyValue(KeyValueList, 'CompanyAddress3', CompanyAddr[3]);
 end;
 ```
 ##  C/AL or AL: Add key value list text to the dataset <a id="1C"/>
