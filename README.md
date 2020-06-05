@@ -1,4 +1,4 @@
-# Dynamics NAV/BC RDLC Custom Code - Extending SetData & GetData
+# Dynamics NAV/BC RDLC Custom Code - Improving SetData & GetData
 
 __Table of Contents__
 * __Getting Started__
@@ -12,7 +12,7 @@ __Table of Contents__
   * [global Variables](#2B)
   * [GetData](#2C)
   * [SetData](#2D)
-* __Extending SetData & GetData__
+* __Improving SetData & GetData__
   * [Concept](#3A)
   * [global Variables](#3B)
   * [GetData ->HeaderVal(Key) & FooterVal(Key)](#3C)
