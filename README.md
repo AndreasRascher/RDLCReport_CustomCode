@@ -110,14 +110,6 @@ Public Function SetDataAsKeyValueList(ByRef SharedData as Object,NewData as Obje
     end if
   Next 
 End Function
-
-Public Function AddValue(ByRef Data as Object,Value as Object)
-  if IsNothing(Data) then
-     Data = New Microsoft.VisualBasic.Collection
-  End if
-  Data.Add(Value,Data.Count +1)
-  Return Data.Count  
-End Function
  
 Public Function AddKeyValue(ByRef Data as Object, Key as Object,Value as Object)
   if IsNothing(Data) then
