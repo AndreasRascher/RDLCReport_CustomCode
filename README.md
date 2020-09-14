@@ -197,7 +197,7 @@ Example in AL:
 				  <Paragraph><TextRuns><TextRun><Value /><Style /></TextRun></TextRuns><Style /></Paragraph>
 				</Paragraphs>
 				<Visibility>
-				  <Hidden>=Code.SetHeaderDataAsKeyValueList(Fields!HeaderFieldsList.Value)</Hidden>
+				  <Hidden>=Code.SetHeaderDataAsKeyValueList(Fields!HeaderFieldsList.Value)'</Hidden>
 				</Visibility>
 				<Style>
 				  <Border>
