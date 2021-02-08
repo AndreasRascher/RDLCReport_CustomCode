@@ -15,8 +15,8 @@ __Table of Contents__
 * __Improving SetData & GetData__
   * [Concept](#3A)
   * [global Variables](#3B)
-  * [GetData ->HeaderVal(Key) & FooterVal(Key)](#3C)
-  * [SetData ->SetHeaderDataAsKeyValueList & SetFooterDataAsKeyValueList](#3D)
+  * [GetData ->GetVal(Key)](#3C)
+  * [SetData ->SetGlobalData(Fields!GlobalData.Value)](#3D)
 
 
 
@@ -26,26 +26,21 @@ __Table of Contents__
 *open the report layout, go to the custom code section and copy/paste the code below:*
 ```vbnet
 ' Source: https://github.com/AndreasRascher/RDLCReport_CustomCode
+' Hidden Tablecell Property Hidden=Code.SetGlobalData(Fields!GlobalData.Value)
 ' =================
 ' Global variables
 ' =================
-Shared HeaderData As Microsoft.VisualBasic.Collection
-Shared FooterData As Microsoft.VisualBasic.Collection
-
+Shared GlobalData As Microsoft.VisualBasic.Collection
 ' ==========================
-' Get Header or Footer Value 
+' Get value by name or number
 ' ==========================
 
 ' Key = position number or name
-Public Function HeaderVal(Key as Object)
-  Return GetValue(HeaderData,Key)
+Public Function GetVal(Key as Object)
+  Return GetVal2(GlobalData,Key)
 End Function
 
-Public Function FooterVal(Key as Object)
-  Return GetValue(FooterData,Key)
-End Function
-
-Public Function GetValue(ByRef Data as Object,Key as Object)
+Public Function GetVal2(ByRef Data as Object,Key as Object)
   'if Key As Number
   If IsNumeric(Key) then
     Dim i as Long
@@ -53,7 +48,7 @@ Public Function GetValue(ByRef Data as Object,Key as Object)
     if (i=0) then
     return "Index starts at 1"
     end if
-    if (Data.Count = 0) OR (i = 0) OR (i >Data.Count) then
+    if (Data.Count = 0) OR (i = 0) OR (i &gt;Data.Count) then
       Return "Invalid Index: '"+CStr(i)+"'! Collection Count = "+ CStr(Data.Count)
     end if  
     Return Data.Item(i)
@@ -67,7 +62,7 @@ Public Function GetValue(ByRef Data as Object,Key as Object)
     Case IsNothing(Key)
       Return "KeyEmpty"
     Case (not Data.Contains(Key))
-      Return "Key not found: '"+CStr(Key)+"'!"
+      Return "?"+CStr(Key)+"?"  ' Not found
     Case Data.Contains(Key)
       Return Data.Item(Key)
     Case else
@@ -77,17 +72,11 @@ Public Function GetValue(ByRef Data as Object,Key as Object)
 End Function
 
 ' ===========================================
-' Set Header and Footer values from the body 
+' Set global values from the body 
 ' ===========================================
 
-Public Function SetHeaderDataAsKeyValueList(NewData as Object)
-  SetDataAsKeyValueList(HeaderData,NewData)
-  Return True 'Set Control to Hidden=true
-End Function
- 
-Public Function SetFooterDataAsKeyValueList(NewData as Object)
-  FooterData = New Microsoft.VisualBasic.Collection 
-  SetDataAsKeyValueList(FooterData,NewData)
+Public Function SetGlobalData(KeyValueList as Object)
+  SetDataAsKeyValueList(GlobalData,KeyValueList)
   Return True 'Set Control to Hidden=true
 End Function
  
@@ -117,7 +106,7 @@ Public Function AddKeyValue(ByRef Data as Object, Key as Object,Value as Object)
   End if
  
   Dim RealKey as String
-  if (CStr(Key) <> "") Then
+  if (CStr(Key) &lt;&gt; "") Then
     RealKey = CStr(Key).ToUpper()
   else
     RealKey = CStr(Data.Count +1)
@@ -167,9 +156,7 @@ Example in AL:
         dataitem("Purchase Header"; "Purchase Header")
         {
 	    [...]
-            column(HeaderFieldsList; GetHeaderFields("Purchase Header"))
-            { }
-            column(FooterFieldsList; GetFooterFields("Purchase Header"))
+            column(GlobalData; GetGlobalDataFields("Purchase Header"))
             { }
 	    [...]
 ```
@@ -177,51 +164,95 @@ Example in AL:
 * open the report.rdl file, search for "\<ReportItems>" and paste the following text below
 * move the tablix into your list tablix if necessary
 ```xml
-<Tablix Name="SetHeaderTable">
-  <TablixBody>
-	<TablixColumns>
-	  <TablixColumn>
-		<Width>0.3cm</Width>
-	  </TablixColumn>
-	</TablixColumns>
-	<TablixRows>
-	  <TablixRow>
-		<Height>0.3cm</Height>
-		<TablixCells>
-		  <TablixCell>
-			<CellContents>
-			  <Textbox Name="SetHeaderTableCell">
-				<CanGrow>true</CanGrow>
-				<KeepTogether>true</KeepTogether>
-				<Paragraphs>
-				  <Paragraph><TextRuns><TextRun><Value /><Style /></TextRun></TextRuns><Style /></Paragraph>
-				</Paragraphs>
-				<Visibility>
-				  <Hidden>=Code.SetHeaderDataAsKeyValueList(Fields!HeaderFieldsList.Value)'</Hidden>
-				</Visibility>
-				<Style>
-				  <Border>
-					<Style>None</Style>
-				  </Border>
-				</Style>
-			  </Textbox>
-			  <rd:Selected>true</rd:Selected>
-			</CellContents>
-		  </TablixCell>
-		</TablixCells>
-	  </TablixRow>
-	</TablixRows>
-  </TablixBody>
-  <TablixColumnHierarchy><TablixMembers><TablixMember /></TablixMembers></TablixColumnHierarchy>
-  <TablixRowHierarchy><TablixMembers><TablixMember /></TablixMembers></TablixRowHierarchy>
-  <Filters><Filter><FilterExpression>=Fields!HeaderFieldsList.Value</FilterExpression>
-	  <Operator>GreaterThan</Operator>
-	  <FilterValues><FilterValue>""</FilterValue> </FilterValues></Filter> </Filters>
-  <Left>1.13167cm</Left><Height>0.3cm</Height><Width>0.3cm</Width><ZIndex>1</ZIndex>
-  <Style><Border><Color>Red</Color><Style>Solid</Style></Border></Style>
-</Tablix>
+                            <Tablix Name="SetGlobalDataTable">
+                              <TablixBody>
+                                <TablixColumns>
+                                  <TablixColumn>
+                                    <Width>0.3cm</Width>
+                                  </TablixColumn>
+                                </TablixColumns>
+                                <TablixRows>
+                                  <TablixRow>
+                                    <Height>0.3cm</Height>
+                                    <TablixCells>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="Textbox14">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value />
+                                                    <Style />
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style />
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Textbox14</rd:DefaultName>
+                                            <Visibility>
+                                              <Hidden>=Code.SetGlobalData(Fields!GlobalData.Value)</Hidden>
+                                            </Visibility>
+                                            <Style>
+                                              <Border>
+                                                <Style>None</Style>
+                                              </Border>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                    </TablixCells>
+                                  </TablixRow>
+                                </TablixRows>
+                              </TablixBody>
+                              <TablixColumnHierarchy>
+                                <TablixMembers>
+                                  <TablixMember />
+                                </TablixMembers>
+                              </TablixColumnHierarchy>
+                              <TablixRowHierarchy>
+                                <TablixMembers>
+                                  <TablixMember>
+                                    <Group Name="Details" />
+                                  </TablixMember>
+                                </TablixMembers>
+                              </TablixRowHierarchy>
+                              <DataSetName>DataSet_Result</DataSetName>
+                              <Left>15.04597cm</Left>
+                              <Height>0.3cm</Height>
+                              <Width>0.3cm</Width>
+                              <ZIndex>12</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Color>Red</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <TopBorder>
+                                  <Color>Red</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </TopBorder>
+                                <BottomBorder>
+                                  <Color>Red</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </BottomBorder>
+                                <LeftBorder>
+                                  <Color>Red</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </LeftBorder>
+                                <RightBorder>
+                                  <Color>Red</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </RightBorder>
+                              </Style>
+                            </Tablix>
 ```
-
+![Sample SetGlobalData](Code_SetGlobalData.png)
 ##  RDLC: Get data by name <a id="1E"/>
 
 ------------------------------------------------
@@ -289,20 +320,16 @@ __Target #1__ Providing the possibility of named indexes to avoid counting and p
 - Approach: Using the Microsoft.VisualBasic.Collection() Object as new global variable. The Class is already available without the need for enabling of external assemblies
 
 __Target #2__ GetData should only need 1 argument
-- Approach: Seperating the get function inte one for footer data and one for header data
-- Approach: Providing one global to pass values to the header and another global to pass values to the footer
+- Approach: Use the data type dictionary to support named values. While numbered indexes are supported it is much more convenient to use names.
 
 __Target #3__ Make it easier to maintain the value list 
 - Approach: By creating a procedure (C/AL or AL) to create a list of values, adding and modifying our Field-List becomes a lot easier
 
-## GetData ->HeaderVal(Key) & FooterVal(Key) <a id="#3C"/>
-![Sample HeaderVal](Code_HeaderVal.png)
-As shown in the example above getting the data into the header works by calling
+## GetData ->Code.GetVal(Key) <a id="#3C"/>
+![Sample GetVal](Code_GetVal.png)
+
+As shown in the example above getting the data into the layout works by calling
 ```vbnet
-=Code.HeaderVal("YourIdentifier")'
-```
-or into the footer
-```vbnet
-=Code.FooterVal("YourIdentifier")'
+=Code.GetVal("YourIdentifier")'
 ```
 **!Please end your Expressions with an apostrophe or else you will loose the arguments when copy & pasting textboxes from one instance of SQL Report Builder to another**
