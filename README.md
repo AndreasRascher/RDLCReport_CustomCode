@@ -332,12 +332,3 @@ __Target #2__ GetData should only need 1 argument
 
 __Target #3__ Make it easier to maintain the value list 
 - Approach: By creating a procedure (C/AL or AL) to create a list of values, adding and modifying our Field-List becomes a lot easier
-
-## GetData ->Code.GetVal(Key) <a id="#3C"/>
-![Sample GetVal](Code_GetVal.png)
-
-As shown in the example above getting the data into the layout works by calling
-```vbnet
-=Code.GetVal("YourIdentifier")'
-```
-**!Please end your Expressions with an apostrophe or else you will loose the arguments when copy & pasting textboxes from one instance of SQL Report Builder to another**
