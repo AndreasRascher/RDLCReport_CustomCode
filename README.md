@@ -6,7 +6,7 @@ __Table of Contents__
   * [C/AL or AL: Add methods to create a key value list](#1B)
   * [C/AL or AL: Add key value list text to the dataset](#1C)  
   * [RDLC: #2 Add a hidden control in the body section to set the data](#1D)
-  * [RDLC: #3 Address data by name](#1E)  
+  * [RDLC: #3 Get data by name](#1E)  
 * __SetData & GetData - the NAV way__
   * [Concept](#2A)
   * [global Variables](#2B)
