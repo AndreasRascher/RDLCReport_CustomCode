@@ -14,9 +14,6 @@ __Table of Contents__
   * [SetData](#2D)
 * __Improving SetData & GetData__
   * [Concept](#3A)
-  * [global Variables](#3B)
-  * [GetData ->GetVal(Key)](#3C)
-  * [SetData ->SetGlobalData(Fields!GlobalData.Value)](#3D)
 
 
 
