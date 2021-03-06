@@ -263,7 +263,7 @@ As shown in the example above getting the data into the layout works by calling
 **!Please end your Expressions with an apostrophe or else you will loose the arguments when copy & pasting textboxes from one instance of SQL Report Builder to another**
 
 ------------------------------------------------
-#SetData & GetData - the NAV way
+# SetData & GetData - the NAV way
 
 ## SetData & GetData - Concept <a id="2A"/>
 The report layout is rendered in different steps. Header and footer are rendered after the body. So if we want to align header or footer contents with the current content in the page body we need to use tranfer data from the body via custom code functions.
