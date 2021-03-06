@@ -254,6 +254,13 @@ Example in AL:
 ```
 ![Sample SetGlobalData](Code_SetGlobalData.png)
 ##  RDLC: Get data by name <a id="1E"/>
+![Sample GetVal](Code_GetVal.png)
+
+As shown in the example above getting the data into the layout works by calling
+```vbnet
+=Code.GetVal("YourIdentifier")'
+```
+**!Please end your Expressions with an apostrophe or else you will loose the arguments when copy & pasting textboxes from one instance of SQL Report Builder to another**
 
 ------------------------------------------------
 
