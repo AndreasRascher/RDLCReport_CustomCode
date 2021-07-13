@@ -45,7 +45,7 @@ Public Function GetVal2(ByRef Data as Object,Key as Object)
     if (i=0) then
     return "Index starts at 1"
     end if
-    if (Data.Count = 0) OR (i = 0) OR (i &gt;Data.Count) then
+    if (Data.Count = 0) OR (i = 0) OR (i > Data.Count) then
       Return "Invalid Index: '"+CStr(i)+"'! Collection Count = "+ CStr(Data.Count)
     end if  
     Return Data.Item(i)
@@ -103,7 +103,7 @@ Public Function AddKeyValue(ByRef Data as Object, Key as Object,Value as Object)
   End if
  
   Dim RealKey as String
-  if (CStr(Key) &lt;&gt; "") Then
+  if (CStr(Key) <> "") Then
     RealKey = CStr(Key).ToUpper()
   else
     RealKey = CStr(Data.Count +1)
