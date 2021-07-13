@@ -130,7 +130,7 @@ begin
 	KeyValueListAsText += NewPair;
 end;
 
-local procedure GetHeaderFields(SalesHeader : Record "Sales Header"; Addr : Array[8] of Text) KeyValueList : Text
+local procedure GetGlobalDataFields(SalesHeader : Record "Sales Header"; Addr : Array[8] of Text) KeyValueList : Text
 begin
         AddKeyValue(KeyValueList, 'Address1', Addr[1]);
         AddKeyValue(KeyValueList, 'Address2', Addr[2]);
@@ -153,7 +153,7 @@ Example in AL:
         dataitem("Purchase Header"; "Purchase Header")
         {
 	    [...]
-            column(GlobalData; GetHeaderFields("Purchase Header"))
+            column(GlobalData; GetGlobalDataFields("Purchase Header"))
             { }
 	    [...]
 ```
