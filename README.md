@@ -153,7 +153,7 @@ Example in AL:
         dataitem("Purchase Header"; "Purchase Header")
         {
 	    [...]
-            column(GlobalData; GetGlobalDataFields("Purchase Header"))
+            column(GlobalData; GetHeaderFields("Purchase Header"))
             { }
 	    [...]
 ```
