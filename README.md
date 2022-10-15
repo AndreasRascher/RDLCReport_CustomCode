@@ -27,14 +27,14 @@ __Table of Contents__
 ' =================
 ' Global variables
 ' =================
-Shared GlobalData As Microsoft.VisualBasic.Collection
+Shared GlobalDict As Microsoft.VisualBasic.Collection
 ' ==========================
 ' Get value by name or number
 ' ==========================
 
 ' Key = position number or name
 Public Function GetVal(Key as Object)
-  Return GetVal2(GlobalData,Key)
+  Return GetVal2(GlobalDict,Key)
 End Function
 
 Public Function GetVal2(ByRef Data as Object,Key as Object)
@@ -73,7 +73,7 @@ End Function
 ' ===========================================
 
 Public Function SetGlobalData(KeyValueList as Object)
-  SetDataAsKeyValueList(GlobalData,KeyValueList)
+  SetDataAsKeyValueList(GlobalDict,KeyValueList)
   Return True 'Set Control to Hidden=true
 End Function
  
